@@ -13,21 +13,21 @@ Process details are returned in output array when propery's value contains searc
 To get info on a specific process use editor and configure a filter based on property value.
 
 example: to filter processes witch `name` or `cmdline` contains the search term: 'node'.
-![Editor image](documentation/process-list-editor-1.png "set property to n")
+![Editor image](documentation/process-list-editor-1.png "set property to name or cmdline")
 
 returns an array with 6 process
 
-![Editor image](documentation/process-list-flow-1.png "Flow image")
+![Editor image](documentation/process-list-flow-1.png "get filtered result")
 
 Cascade filters are available when 2 or more nodes are join together.
 
 so lets add second node to filter first node search results. Set `value` to '/bin/dash' and the `property` to 'path'.
 
-![Editor image](documentation/process-list-editor-2.png "Editor image")
+![Editor image](documentation/process-list-editor-2.png "set another filter in new node")
 
 returns only one task from the 6 given before in input
 
-![Editor image](documentation/process-list-flow-2.png "Flow image")
+![Editor image](documentation/process-list-flow-2.png "get double filtered results")
 
 **Do not self join the node (using link in/out nodes) to avoid memory leaks**.
 
