@@ -1,5 +1,5 @@
 # node-red-contrib-process-list
-Simple node to get information about running processes/tasks on server hosting Node-Red. It's based on [Process-list](https://www.npmjs.com/package/process-list) module.
+Simple node to get list of running processes/tasks on server hosting Node-Red. It's based on [Process-list](https://www.npmjs.com/package/process-list) module.
 
 ## Install
 Install from PALETTE Manager or run the following command in your NODE-RED user directory typically: \~/.node-red
@@ -9,26 +9,27 @@ npm install node-red-contrib-process-list
 ## Usage
 Use the editor to filter output with search string (`value`) against specified property (`property`). 
 Process details are returned in output array when propery's value contains search term. You can specify a search term with `msg.tasksearch` input property also.
-`property` must be selected using the editor. Default is `name and cmdline`. If at least one of these 2 property's value contains search term the process will be returned in output array.
+`property` must be selected using the editor. Default is 'name or cmdline'. If at least one of these 2 property's value contains search term the process will be returned in output array.
 To get info on a specific process use editor and configure a filter based on property value.
 
-example: to get processes witch `name` or `cmdline` contains the search term: node.
-![Editor image](documentation/process-list-editor-1.png "Editor image")
+example: to filter processes witch `name` or `cmdline` contains the search term: 'node'.
+![Editor image](documentation/process-list-editor-1.png "set property to n")
 
-gives the output
+returns an array with 6 process
 
 ![Editor image](documentation/process-list-flow-1.png "Flow image")
 
 Cascade filters are available when 2 or more nodes are join together.
 
-example: lets add second node to filter first node search results setting the `value` to '/bin/dash' and the `property` 'path'.
+so lets add second node to filter first node search results. Set `value` to '/bin/dash' and the `property` to 'path'.
+
 ![Editor image](documentation/process-list-editor-2.png "Editor image")
 
-gives the output
+returns only one task from the 6 given before in input
 
 ![Editor image](documentation/process-list-flow-2.png "Flow image")
 
-Do not self join the node (using link in/out nodes) to avoid memory leaks.
+**Do not self join the node (using link in/out nodes) to avoid memory leaks**.
 
 ### Input
 `msg.tasksearch` string term used to filter processes overwriting `value` specified in the editor. It is case insensitive. To get all processes do not use the input and leave editor field `value` empty.
