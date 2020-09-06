@@ -16,6 +16,7 @@ example: to get processes witch `name` or `cmdline` contains the search term: no
 ![Editor image](documentation/process-list-editor-1.png "Editor image")
 
 gives the output
+
 ![Editor image](documentation/process-list-flow-1.png "Flow image")
 
 Cascade filters are available when 2 or more nodes are join together.
@@ -24,6 +25,7 @@ example: lets add second node to filter first node search results setting the `v
 ![Editor image](documentation/process-list-editor-2.png "Editor image")
 
 gives the output
+
 ![Editor image](documentation/process-list-flow-2.png "Flow image")
 
 Do not self join the node (using link in/out nodes) to avoid memory leaks.
