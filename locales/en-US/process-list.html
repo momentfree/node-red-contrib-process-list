@@ -1,0 +1,17 @@
+<script type="text/html" data-help-name="process-list">
+  <p>Simple node to get information about running processes/tasks on server hosting Node-Red based on <a href="https://www.npmjs.com/package/process-list" target="_new">Process-list</a> module. Should work on all Linux distro and Windows 7 and earlier.</p>
+  <h3>Input</h3>
+  <dl class="message-properties">
+  	<dt><i>msg.tasksearch</i> <span class="property-type">string</span></dt>
+  	<dd>search term used to filter processes overwrites `value` specified in the editor. To get all processes do not use this input and leave editor field <code>value</code> empty</dd>
+  	<dt><i>msg.processlist</i> <span class="property-type">objects array</span></dt>
+  	<dd>array of objects used internally to cascade filter processes. Join together multiple node to filter in sequence.</dd>
+  </dl>
+  <h3>Output</h3>
+  <dl class="message-properties">
+  	<dt><i>msg.processlist</i> <span class="property-type">objects array</span></dt>
+	<dd>array of objects containing the following properties: <pre>pid, name, cmdline, ppid, path, threads, owner, priority, starttime, vmem, pmem, cpu, utime, stime</pre></dd>
+  	<dt><i>msg.processlistJSON</i> <span class="property-type">objects array</span></dt>
+	<dd>JSON array of objects cloned from <code>msg.processlist</code></dd>
+  </dl>
+</script>

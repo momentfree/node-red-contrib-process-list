@@ -1,0 +1,59 @@
+<script type="text/javascript">
+RED.nodes.registerType('process-list',{
+	category: 'function',
+	color: '#DAC4B4',
+	defaults: {
+			name: {value:""},
+			taskname: {value:""},
+			searchfield: {value:"name&cmdline"},
+			jsonformat:{value:false}
+	},
+	inputs:1,
+	outputs:1,
+	icon: "gears.png",
+	label: function() {
+			return this.name||"process-list";
+	},
+	oneditprepare: function() {
+		if (!this.searchfield) {
+				this.searchfield = "name&cmdline";
+				$("#node-input-searchfield").val(this.searchfield);
+		}
+	},
+	paletteLabel: function() {
+			return "process-list";
+	},
+});
+</script>
+
+<script type="text/html" data-template-name="process-list">
+	<div class="form-row">
+			<label style="width:auto" for="node-input-taskname"><i class="fa fa-filter"></i> Filter:</label>
+	</div>
+	<div class="form-row">
+		<label for="node-input-searchfield"  style="padding-left: 25px; margin-right: -25px"><i class="fa fa-ellipsis-h"></i> property</span></label>
+		<select id="node-input-searchfield" style="width:70%">
+				<option value="name&cmdline">name or cmdline</option>
+				<option value="name">name</option>
+				<option value="cmdline">cmdline</option>
+				<option value="pid">pid</option>
+				<option value="ppid">ppid</option>
+				<option value="path">path</option>
+				<option value="owner">owner</option>
+				<option value="starttime">starttime</option>
+		</select>
+	</div>
+	<div class="form-row">
+			<label for="node-input-taskname" style="padding-left: 25px; margin-right: -25px"><i class="fa fa-search"></i> value</label>
+			<input type="text" id="node-input-taskname" style="width:70%" placeholder="leave empty for all process">
+	</div>
+	<div class="form-row">
+			<input type="checkbox" id="node-input-jsonformat" style="vertical-align:top; width:auto;">
+			<label for="node-input-jsonformat" style="width:auto;">&nbsp;&nbsp;add JSON output</label>
+	</div>
+	<hr style="color:lightgray;background-color:lightgray">
+	<div class="form-row">
+			<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+			<input type="text" id="node-input-name" placeholder="node name">
+	</div>
+</script>
