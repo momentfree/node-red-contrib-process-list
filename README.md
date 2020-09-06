@@ -11,16 +11,21 @@ Use the editor to filter output with search string (`value`) against specified p
 Process details are returned in output array when propery's value contains search term. You can specify a search term with `msg.tasksearch` input property also.
 `property` must be selected using the editor. Default is `name and cmdline`. If at least one of these 2 property's value contains search term the process will be returned in output array.
 To get info on a specific process use editor and configure a filter based on property value.
-example -get processes witch `name` or `cmdline` contains the search term: node.
+
+example: to get processes witch `name` or `cmdline` contains the search term: node.
 ![Editor image](documentation/process-list-editor-1.png "Editor image")
+
 gives the output
 ![Editor image](documentation/process-list-flow-1.png "Flow image")
 
 Cascade filters are available when 2 or more nodes are join together.
-example - lets add second node to filter results from the first searching the `value` '/bin/dash' in the `property` path.
+
+example: lets add second node to filter first node search results setting the `value` to '/bin/dash' and the `property` 'path'.
 ![Editor image](documentation/process-list-editor-2.png "Editor image")
+
 gives the output
 ![Editor image](documentation/process-list-flow-2.png "Flow image")
+
 Do not self join the node (using link in/out nodes) to avoid memory leaks.
 
 ### Input
