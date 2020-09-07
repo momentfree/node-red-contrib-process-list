@@ -7,8 +7,8 @@ Install from PALETTE Manager or run the following command in your NODE-RED user 
 npm install node-red-contrib-process-list
 ```
 ## Usage
-Use the editor to filter output with search string (`value`) against specified property (`property`). 
-Process details are returned in output array when propery's value contains search term. You can specify a search term with `msg.tasksearch` input property also.
+Use the editor to filter output with search string (`value`) against specified property (`property`).
+Process details are returned in output array when propery's value contains search term. the match is **case insensitive**. You can specify a search term with `msg.tasksearch` input property also.
 `property` must be selected using the editor. Default is 'name or cmdline'. If at least one of these 2 property's value contains search term the process will be returned in output array.
 To get info on a specific process use editor and configure a filter based on property value.
 
