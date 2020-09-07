@@ -96,8 +96,8 @@ module.exports = function(RED) {
 					// get search text from input or from editor or set to empty
 					if (typeof msg.tasksearch === 'string' || msg.tasksearch instanceof String){
 						node.taskquery = msg.tasksearch || taskname || "";
-					}else {
-						node.taskquery = "";
+					} else {
+						node.taskquery = taskname || "";
 					}
 					delete msg.tasksearch;
 					// get input array for cascade filters
