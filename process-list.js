@@ -1,6 +1,8 @@
 module.exports = function(RED) {
 	"use strict";
 
+	const propertiesArray = ['pid', 'name','cmdline','ppid','path','threads','owner','priority','starttime','vmem','pmem','cpu','utime','stime'];
+	const propertiesToRetrieve = new Set(['pid', 'name','cmdline','ppid','path','threads','owner','priority','starttime','vmem','pmem','cpu','utime','stime']);
 	const {snapshot} = require("process-list");
 	/*
 	the node uses Process-List module made by:
@@ -31,10 +33,11 @@ module.exports = function(RED) {
 	repositories:
 	https://www.npmjs.com/package/process-list
 	https://github.com/reklatsmasters/node-process-list
-	*/	
-	
+	*/
+
 	// Validation Field Array
-	const propertiesArray = ['pid', 'name','cmdline','ppid','path','threads','owner','priority','starttime','vmem','pmem','cpu','utime','stime'];
+
+
 
 	async function taskListRequest(node,msg,callback){
 		try {
@@ -43,25 +46,16 @@ module.exports = function(RED) {
 			if(node.processlist) { // next cascade filter
 				taskArray= node.processlist;
 				node.processlist="";
-				var validateArray=true;
-				if (Array.isArray(taskArray)){ // validate array object properties
-					taskArray.forEach(function (arrayItem) {
-						for (var i = 0; i < propertiesArray.length; i++) {
-							if (typeof arrayItem[propertiesArray[i]] === 'undefined') {
-								validateArray = false;
-								break;
-							}
+				// validate array object properties
+				taskArray.forEach(function (arrayItem) {
+					for (var i = 0; i < propertiesArray.length; i++) {
+						if (typeof arrayItem[propertiesArray[i]] === 'undefined') {
+							throw "Error: invalid input array format!";
 						}
-					});
-				} else {
-					validateArray = false;
-				}
-				if(!validateArray){
-					callback("Error: invalid input array format!");
-					return;
-				}
+					}
+				});
 			} else { // first or single filter
-				taskArray = await snapshot('pid', 'name','cmdline','ppid','path','threads','owner','priority','starttime','vmem','pmem','cpu','utime','stime');
+				taskArray = await snapshot(...propertiesToRetrieve);
 			}
 			node.tasks = [];
 			if(node.taskquery){
@@ -106,7 +100,7 @@ module.exports = function(RED) {
 					node.processlist = msg.processlist;
 					if (msg.processlist) delete msg.processlist;
 					// reset JSON list
-					if (msg.processlistJSON) delete msg.processlistJSON;				
+					if (msg.processlistJSON) delete msg.processlistJSON;
 					// async query processes with callback
 					taskListRequest(node,msg,function(err) {
 							if (err) {
@@ -118,7 +112,7 @@ module.exports = function(RED) {
 								if(node.jsonformat && node.tasks){ // object array to json array
 									var jsonArray = JSON.stringify({ ...node.tasks });
 									RED.util.setMessageProperty(msg,"processlistJSON",jsonArray);
-								}								
+								}
 								node.send(msg);
 								// reset node status
 								node.status({});
