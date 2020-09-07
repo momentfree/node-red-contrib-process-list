@@ -95,12 +95,12 @@ module.exports = function(RED) {
 					node.searchfield = searchfield || "name&cmdline";
 					// get search text from input or from editor or set to empty
 					node.taskquery = msg.tasksearch || taskname || "";
-					if (msg.tasksearch) delete msg.tasksearch;
+					delete msg.tasksearch;
 					// get input array for cascade filters
 					node.processlist = msg.processlist;
-					if (msg.processlist) delete msg.processlist;
+					delete msg.processlist;
 					// reset JSON list
-					if (msg.processlistJSON) delete msg.processlistJSON;
+					delete msg.processlistJSON;
 					// async query processes with callback
 					taskListRequest(node,msg,function(err) {
 							if (err) {
