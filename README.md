@@ -12,10 +12,10 @@ Process details are returned in output array when propery's value contains searc
 `property` must be selected using the editor. Default is 'name or cmdline'. If at least one of these 2 property's value contains search term the process will be returned in output array. When no process are returned from filter (array with no items), the node outputs an empty string.
 To get info on a specific process use editor and configure a filter based on property value.
 
-example: to filter processes witch `name` or `cmdline` contains the search term: 'node'.
+example: filter processes where `name` or `cmdline` contains the search term: 'node'.
 ![Editor image](documentation/process-list-editor-1.png "set property to name or cmdline")
 
-returns an array with 6 process
+returns an array with 6 processes
 
 ![Editor image](documentation/process-list-flow-1.png "get filtered result")
 
