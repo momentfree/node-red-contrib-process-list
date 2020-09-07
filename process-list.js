@@ -94,7 +94,11 @@ module.exports = function(RED) {
 					// get search field from editor or set to name&cmdline
 					node.searchfield = searchfield || "name&cmdline";
 					// get search text from input or from editor or set to empty
-					node.taskquery = msg.tasksearch || taskname || "";
+					if (typeof msg.tasksearch === 'string' || msg.tasksearch instanceof String){
+						node.taskquery = msg.tasksearch || taskname || "";
+					}else {
+						node.taskquery = "";
+					}
 					delete msg.tasksearch;
 					// get input array for cascade filters
 					node.processlist = msg.processlist;
