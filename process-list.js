@@ -35,10 +35,6 @@ module.exports = function(RED) {
 	https://github.com/reklatsmasters/node-process-list
 	*/
 
-	// Validation Field Array
-
-
-
 	async function taskListRequest(node,msg,callback){
 		try {
 			node.status({fill:"blue",shape:"dot",text:"getting tasks.."});
