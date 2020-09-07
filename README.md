@@ -33,9 +33,11 @@ returns only one task from the 6 given before in input
 
 ### Input
 `msg.tasksearch` string term used to filter processes overwriting `value` specified in the editor. It is case insensitive. To get all processes do not use this input and leave editor field `value` empty. If this input is not a string it will be treated as an empty string therefore editor field `value` will be used if not empty otherwise no filters will be applied and all processes will be returned in output.
+
 `msg.processlist` is array of objects used internally to cascade filter processes. Join together multiple node to apply more filters.
 ### Output
 `msg.processlist` array of objects containing the following properties: `pid, name, cmdline, ppid, path, threads, owner, priority, starttime, vmem, pmem, cpu, utime, stime`.
+
 `msg.processlistJSON` JSON array of objects.
 
 Tested on raspbian 10 - 32bit. Should work on all Linux distro and Windows 7 and earlier.
