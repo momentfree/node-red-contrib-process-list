@@ -32,7 +32,7 @@ returns only one task from the 6 given before in input
 **Do not self join the node (using link in/out nodes) to avoid memory leaks**.
 
 ### Input
-`msg.tasksearch` string term used to filter processes overwriting `value` specified in the editor. It is case insensitive. To get all processes do not use this input and leave editor field `value` empty. If this input is not a string it will be treated as an empty string therefore editor field `value` will be used if not empty otherwise no filters will be applied and all processes will be returned in output.
+`msg.tasksearch` string term used to filter processes overwriting `value` specified in the editor. It is case insensitive. To get all processes do not use this input and leave editor field `value` empty. If this input is not a string it will be evaluated as an empty string therefore editor field `value` will be used if not empty otherwise no filters will be applied and all processes will be returned in output.
 
 `msg.processlist` is array of objects used internally to cascade filter processes. Join together multiple node to apply more filters.
 ### Output
